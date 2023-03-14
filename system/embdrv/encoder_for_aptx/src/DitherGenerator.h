@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /*------------------------------------------------------------------------------
  *
  *  These functions allow clients to update an internal codeword history
@@ -14,7 +29,7 @@
 /* This function updates an internal bit-pool (private
  * variable in DitherGenerator) based on bits obtained from
  * previously encoded or received aptX codewords. */
-XBT_INLINE_ int32_t xbtEncupdateCodewordHistory(int32_t quantisedCodes[4],
+XBT_INLINE_ int32_t xbtEncupdateCodewordHistory(const int32_t quantisedCodes[4],
                                                 int32_t m_codewordHistory) {
   int32_t newBits;
   int32_t updatedCodewordHistory;
@@ -47,7 +62,8 @@ XBT_INLINE_ int32_t xbtEncupdateCodewordHistory(int32_t quantisedCodes[4],
 XBT_INLINE_ int32_t xbtEncgenerateDither(int32_t m_codewordHistory,
                                          int32_t* m_ditherOutputs) {
   int32_t history24b;
-  int32_t upperAcc, lowerAcc;
+  int32_t upperAcc;
+  int32_t lowerAcc;
   int32_t accSum;
   int64_t tmp_acc;
   int32_t ditherSample;

@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /*------------------------------------------------------------------------------
  *
  *  This file includes convolution functions required for the Qmf.
@@ -128,29 +143,49 @@ void AsmQmfConvO(const int16_t* p1dl_buffPtr, const int16_t* p2dl_buffPtr,
 
   local_acc0 += 0x004000L;
   acc = (int32_t)(local_acc0 >> 15);
-  if (tmp_round0 == 0x004000L) acc--;
-  if (acc > 8388607) acc = 8388607;
-  if (acc < -8388608) acc = -8388608;
+  if (tmp_round0 == 0x004000L) {
+    acc--;
+  }
+  if (acc > 8388607) {
+    acc = 8388607;
+  }
+  if (acc < -8388608) {
+    acc = -8388608;
+  }
 
-  phaseConv[0] = (int32_t)acc;
+  phaseConv[0] = acc;
 
   tmp_round0 = (int32_t)local_acc1 & 0x00FFFFL;
 
   local_acc1 += 0x004000L;
   acc = (int32_t)(local_acc1 >> 15);
-  if (tmp_round0 == 0x004000L) acc--;
-  if (acc > 8388607) acc = 8388607;
-  if (acc < -8388608) acc = -8388608;
+  if (tmp_round0 == 0x004000L) {
+    acc--;
+  }
+  if (acc > 8388607) {
+    acc = 8388607;
+  }
+  if (acc < -8388608) {
+    acc = -8388608;
+  }
 
-  phaseConv[1] = (int32_t)acc;
+  phaseConv[1] = acc;
 
   convSum = phaseConv[1] + phaseConv[0];
-  if (convSum > 8388607) convSum = 8388607;
-  if (convSum < -8388608) convSum = -8388608;
+  if (convSum > 8388607) {
+    convSum = 8388607;
+  }
+  if (convSum < -8388608) {
+    convSum = -8388608;
+  }
 
   convDiff = phaseConv[1] - phaseConv[0];
-  if (convDiff > 8388607) convDiff = 8388607;
-  if (convDiff < -8388608) convDiff = -8388608;
+  if (convDiff > 8388607) {
+    convDiff = 8388607;
+  }
+  if (convDiff < -8388608) {
+    convDiff = -8388608;
+  }
 
   *(convSumDiff) = convSum;
   *(convSumDiff + 2) = convDiff;
@@ -278,10 +313,14 @@ void AsmQmfConvI(const int32_t* p1dl_buffPtr, const int32_t* p2dl_buffPtr,
     acc--;
   }
 
-  if (acc > 8388607) acc = 8388607;
-  if (acc < -8388608) acc = -8388608;
+  if (acc > 8388607) {
+    acc = 8388607;
+  }
+  if (acc < -8388608) {
+    acc = -8388608;
+  }
 
-  phaseConv[0] = (int32_t)acc;
+  phaseConv[0] = acc;
   tmp_round0 = (int32_t)local_acc1;
 
   local_acc1 += 0x00400000L;
@@ -290,20 +329,32 @@ void AsmQmfConvI(const int32_t* p1dl_buffPtr, const int32_t* p2dl_buffPtr,
     acc--;
   }
 
-  if (acc > 8388607) acc = 8388607;
-  if (acc < -8388608) acc = -8388608;
+  if (acc > 8388607) {
+    acc = 8388607;
+  }
+  if (acc < -8388608) {
+    acc = -8388608;
+  }
 
-  phaseConv[1] = (int32_t)acc;
+  phaseConv[1] = acc;
 
   convSum = phaseConv[1] + phaseConv[0];
-  if (convSum > 8388607) convSum = 8388607;
-  if (convSum < -8388608) convSum = -8388608;
+  if (convSum > 8388607) {
+    convSum = 8388607;
+  }
+  if (convSum < -8388608) {
+    convSum = -8388608;
+  }
 
   *(filterOutputs) = convSum;
 
   convDiff = phaseConv[1] - phaseConv[0];
-  if (convDiff > 8388607) convDiff = 8388607;
-  if (convDiff < -8388608) convDiff = -8388608;
+  if (convDiff > 8388607) {
+    convDiff = 8388607;
+  }
+  if (convDiff < -8388608) {
+    convDiff = -8388608;
+  }
 
   *(filterOutputs + 1) = convDiff;
 }

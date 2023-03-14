@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 #include "aptXbtenc.h"
 
 #include "AptxEncoder.h"
@@ -200,13 +215,13 @@ APTXBTENCEXPORT int aptxbtenc_encodestereo(void* _state, void* _pcmL,
   tmp_out = tmp_reg >> state->m_endian;
   tmp_out |= tmp_reg << state->m_endian;
 
-  buffer[0] = (int16_t)tmp_out;
+  buffer[0] = tmp_out;
   tmp_reg = packCodeword(&state->m_encoderData[1], state->m_sync_mode);
   // Swap bytes to output data in big-endian as expected by bc5 code...
   tmp_out = tmp_reg >> state->m_endian;
   tmp_out |= tmp_reg << state->m_endian;
 
-  buffer[1] = (int16_t)tmp_out;
+  buffer[1] = tmp_out;
 
   return 0;
 }

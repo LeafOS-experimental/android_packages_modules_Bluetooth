@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /*------------------------------------------------------------------------------
  *
  *  All declarations relevant for the SyncInserter class. This class exposes a
@@ -64,12 +79,15 @@ XBT_INLINE_ void xbtEncinsertSync(Encoder_data* leftChannelEncoder,
   /* If the distance penalty associated with a quantiser is less than the
    * current minimum, then make that quantiser the minimum penalty
    * quantiser. */
-  if (rightQuant[HL]->distPenalty < minPenaltyQuantiser->distPenalty)
+  if (rightQuant[HL]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = rightQuant[HL];
-  if (rightQuant[LL]->distPenalty < minPenaltyQuantiser->distPenalty)
+  }
+  if (rightQuant[LL]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = rightQuant[LL];
-  if (rightQuant[HH]->distPenalty < minPenaltyQuantiser->distPenalty)
+  }
+  if (rightQuant[HH]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = rightQuant[HH];
+  }
 
   /* Traverse across all quantisers from the left channel */
   for (i = LL; i <= HH; i++) {
@@ -80,14 +98,18 @@ XBT_INLINE_ void xbtEncinsertSync(Encoder_data* leftChannelEncoder,
   /* If the distance penalty associated with a quantiser is less than the
    * current minimum, then make that quantiser the minimum penalty
    * quantiser. */
-  if (leftQuant[LH]->distPenalty < minPenaltyQuantiser->distPenalty)
+  if (leftQuant[LH]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = leftQuant[LH];
-  if (leftQuant[HL]->distPenalty < minPenaltyQuantiser->distPenalty)
+  }
+  if (leftQuant[HL]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = leftQuant[HL];
-  if (leftQuant[LL]->distPenalty < minPenaltyQuantiser->distPenalty)
+  }
+  if (leftQuant[LL]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = leftQuant[LL];
-  if (leftQuant[HH]->distPenalty < minPenaltyQuantiser->distPenalty)
+  }
+  if (leftQuant[HH]->distPenalty < minPenaltyQuantiser->distPenalty) {
     minPenaltyQuantiser = leftQuant[HH];
+  }
 
   /* If the lsbs of all 8 quantised codes don't happen to equal the desired
    * sync bit to embed, then force them to be by replacing the optimum code

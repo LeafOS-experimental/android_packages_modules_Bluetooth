@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /*------------------------------------------------------------------------------
  *
  *  This file includes the coefficient tables or the two convolution function
@@ -27,32 +42,44 @@ typedef struct {
 #ifndef _STDQMFOUTERCOEFF
 static const int32_t Qmf_outerCoeffs[12] = {
     /* (C(1/30)C(3/28)), C(5/26), C(7/24) */
-    0xFE6302DA, 0xFFFFDA75, 0x0000AA6A,
+    0xFE6302DA,
+    0xFFFFDA75,
+    0x0000AA6A,
     /*  C(9/22), C(11/20), C(13/18), C(15/16) */
-    0xFFFE273E, 0x00041E95, 0xFFF710B5, 0x002AC12E,
+    0xFFFE273E,
+    0x00041E95,
+    0xFFF710B5,
+    0x002AC12E,
     /*  C(17/14), C(19/12), (C(21/10)C(23/8)) */
-    0x000AA328, 0xFFFD8D1F, 0x211E6BDB,
+    0x000AA328,
+    0xFFFD8D1F,
+    0x211E6BDB,
     /* (C(25/6)C(27/4)), (C(29/2)C(31/0)) */
-    0x0DB7D8C5, 0xFC7F02B0};
+    0x0DB7D8C5,
+    0xFC7F02B0,
+};
 #else
 static const int32_t Qmf_outerCoeffs[16] = {
     730,    -413,    -9611, 43626, -121026, 269973, -585547, 2801966,
-    697128, -160481, 27611, 8478,  -10043,  3511,   688,     -897};
+    697128, -160481, 27611, 8478,  -10043,  3511,   688,     -897,
+};
 #endif
 
 /* Each inner QMF filter for Enhanced aptX is a symmetrical 32-tap filter (16
  * different coefficients) */
 static const int32_t Qmf_innerCoeffs[16] = {
     1033,   -584,    -13592, 61697, -171156, 381799, -828088, 3962579,
-    985888, -226954, 39048,  11990, -14203,  4966,   973,     -1268};
+    985888, -226954, 39048,  11990, -14203,  4966,   973,     -1268,
+};
 
 void AsmQmfConvI(const int32_t* p1dl_buffPtr, const int32_t* p2dl_buffPtr,
                  const int32_t* coeffPtr, int32_t* filterOutputs);
 void AsmQmfConvO(const int16_t* p1dl_buffPtr, const int16_t* p2dl_buffPtr,
                  const int32_t* coeffPtr, int32_t* convSumDiff);
 
-XBT_INLINE_ void QmfAnalysisFilter(int32_t pcm[4], Qmf_storage* Qmf_St,
-                                   int32_t* predVals, int32_t* aqmfOutputs) {
+XBT_INLINE_ void QmfAnalysisFilter(const int32_t pcm[4], Qmf_storage* Qmf_St,
+                                   const int32_t predVals[4],
+                                   int32_t* aqmfOutputs) {
   int32_t convSumDiff[4];
   int32_t filterOutputs[4];
 

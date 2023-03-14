@@ -25,6 +25,7 @@
 
 #include "a2dp_vendor.h"
 #include "a2dp_vendor_aptx_hd.h"
+#include "aptXHDbtenc.h"
 #include "common/time_util.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -37,10 +38,10 @@
 // Encoder for aptX-HD Source Codec
 //
 
-static const tAPTX_HD_API aptx_hd_api ={
-  .init_func = aptxhdbtenc_init,
-  .encode_stereo_func = aptxhdbtenc_encodestereo,
-  .sizeof_params_func = SizeofAptxhdbtenc,
+static const tAPTX_HD_API aptx_hd_api = {
+    .init_func = aptxhdbtenc_init,
+    .encode_stereo_func = aptxhdbtenc_encodestereo,
+    .sizeof_params_func = SizeofAptxhdbtenc,
 };
 
 // offset
@@ -49,7 +50,6 @@ static const tAPTX_HD_API aptx_hd_api ={
 #else
 #define A2DP_APTX_HD_OFFSET AVDT_MEDIA_OFFSET
 #endif
-
 
 #define A2DP_APTX_HD_MAX_PCM_BYTES_PER_READ 4096
 

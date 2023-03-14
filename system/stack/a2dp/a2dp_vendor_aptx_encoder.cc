@@ -25,6 +25,7 @@
 
 #include "a2dp_vendor.h"
 #include "a2dp_vendor_aptx.h"
+#include "aptXbtenc.h"
 #include "common/time_util.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -38,9 +39,9 @@
 //
 
 static const tAPTX_API aptx_api = {
-  .init_func = aptxbtenc_init,
-  .encode_stereo_func = aptxbtenc_encodestereo,
-  .sizeof_params_func = SizeofAptxbtenc,
+    .init_func = aptxbtenc_init,
+    .encode_stereo_func = aptxbtenc_encodestereo,
+    .sizeof_params_func = SizeofAptxbtenc,
 };
 
 // offset
